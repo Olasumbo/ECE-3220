@@ -76,20 +76,18 @@ int main(int argc, char*argv[])
 			{
 				filename = argv[2];
 				Signal input(filename);
+				cout << "Filename: " << filename << endl;
 				input.menu();
 				delete &input;
 				break;
 			}
-
 		}
 	}
 	else
 	{
 		cerr << "Error! Wrong number of argument "<< endl;
 	}
-
 	cout << "Everything is done!" << endl;
-
 	return 0;
 }
 
@@ -99,8 +97,8 @@ void Signal::menu()
 	do
 	{
 
-		cout << " Welcome to a complicated life"<< endl;
-		cout << " Here is a list of things you can do, Please pick your choices appropriately"<< endl;
+		cout << "Welcome to a complicated life"<< endl;
+		cout << "Here is a list of things you can do, Please pick your choices appropriately"<< endl;
 		cout << "\n1) Offset " << endl;
 		cout << "2) Scale" << endl;
 		cout << "3) Center" << endl;
@@ -110,7 +108,7 @@ void Signal::menu()
 		cout << "7) Save Signal" << endl;
 		cout << "8) Exit" << endl;
 
-		cout << "Select an option: ";
+		cout << "Select an option: " <<endl;
 		cin >> opt;
 
 		switch(opt)
@@ -178,18 +176,22 @@ void Signal::offset(double x)
 {
 	for(int i = 0; i<length; i++)
 	{
-		cout << "Offset " << updateddata[i] << ":" << i << " by " << x << endl;
+		cout << "Offset["<< i << "] -> "<< updateddata[i] << " by " << x << endl;
 		updateddata[i] = updateddata[i] + x;
 	}
+	getAverage();
+	getMax();
 }
 
 void Signal::scale(double x)
 {
 	for(int i = 0; i<length; i++)
 	{
-		cout << "Scaled " << updateddata[i] << ":" << i << " by " << x << endl;
+		cout << "Scaled[" << i << "] ->"<< updateddata[i] << " by " << x << endl;
 		updateddata[i] = updateddata[i] * x;
 	}
+	getAverage();
+	getMax();
 }
 
 void Signal::getAverage()
@@ -200,7 +202,6 @@ void Signal::getAverage()
 		Avg = Avg + updateddata[i];
 	}
 	Avg = (Avg/(length));
-	//cout << "Average is: " << Avg << endl;
 }
 
 void Signal::getMax()
@@ -223,6 +224,8 @@ void Signal::center()
 	{
 		updateddata[i] -= Avg;
 	}
+	getAverage();
+	getMax();
 }
 
 void Signal::statistics()
@@ -238,6 +241,8 @@ void Signal::normalize()
 	{
 		updateddata[i] /= Max_Num;
 	}
+	getAverage();
+	getMax();
 }
 
 void Signal::Sig_info()
@@ -250,42 +255,51 @@ void Signal::Sig_info()
 			Min_Num = updateddata[i];
 		}
 	}
-
 	int i = 0;
 	while ( i < length )
 	{
-		cout << "DATA --- " << data[i] << "[" << i << "] -> " << updateddata[i] << "[" << i << "]" << endl;
+		cout << "DATA[" << i << "] -> " << data[i] << " --> " << updateddata[i] << endl;
 		i++;
 	}
-
 	cout << "\nSignal length: " << length << endl;
 	cout << "Maximum val:" << Max_Num << endl;
 	cout << "Minimum val:" << Min_Num << endl;
 	cout << "Average val:" << Avg << endl;
-
 }
 
 void Signal::Save_file(int n)
 {
 	/*FILE *fp_w = fopen(filename, "w");
-	if(fp_w != NULL)
-	{
-		fprintf(fp_w, "%lf %0.4lf\n", length, Max_Num);
-		for(int i = 0; i < length; i++)
+		if(fp_w != NULL)
 		{
-			fprintf(fp_w, "%0.4lf\n", *(data+i));
-		}
-		fclose(fp_w);
-	}*/
+			fprintf(fp_w, "%lf %0.4lf\n", length, Max_Num);
+			for(int i = 0; i < length; i++)
+			{
+				fprintf(fp_w, "%0.4lf\n", *(data+i));
+			}
+			fclose(fp_w);
+		}*/
+	string test = "Raw_data_0" + to_string(n) + ".txt";
 	ofstream myfile ("Raw_data_0" + to_string(n) + ".txt");
+	//myfile >> length >> Max_Num;
+	//myfile.ignore( 1,'\n' );
+	cout << "Length: " << length << " | Max: " << Max_Num << endl;
+
 	if(myfile.is_open())
 	{
 		cerr << "Could not open file "<< endl;
 	}
-	for(int i = 0; i<length; i++)
+	int i = 0;
+	string line;
+	while ( i < length )
 	{
+		//getline( myfile, line );
+		updateddata.push_back( atof( line.c_str() ) );
+		cout << "Read the data for " << i << " : " << data[i] << endl;
+		i++;
 		myfile << updateddata[i++];
 	}
+
 	myfile.close();
 }
 
@@ -301,8 +315,7 @@ Signal::Signal(int n) /// It reads in my file.
 
 	if ( myfile.is_open() )
 	{
-
-		cout << "I opened a file! I so cool!" << endl;
+		//cout << "I opened a file! I so cool!" << endl;
 		myfile >> length >> Max_Num;
 		myfile.ignore( 1,'\n' );
 		cout << "Length: " << length << " | Max: " << Max_Num << endl;
@@ -317,7 +330,6 @@ Signal::Signal(int n) /// It reads in my file.
 			cout << "Read the data for " << i << " : " << data[i] << endl;
 			i++;
 		}
-
 		myfile.close();
 	}
 	else

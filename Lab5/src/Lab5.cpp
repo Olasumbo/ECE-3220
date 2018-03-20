@@ -17,6 +17,7 @@
 #include <iomanip>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sstream>
 using namespace std;
 
 class Signal
@@ -42,7 +43,7 @@ public:
 	void Save_file(int n);
 
 	//Constructors
-	Signal():Signal(0){}; // default file
+	Signal():Signal(1){}; // default file
 	Signal(int n); // when given just a number it opens the file
 	Signal(string filename);
 
@@ -57,9 +58,11 @@ int main(int argc, char*argv[])
 	string filename;
 	if(argc == 1)
 	{
-		Signal(0);
+		Signal input;
+		input.menu();
+		delete &input;
 	}
-	if (argc >= 3)
+	else if (argc >= 3)
 	{
 		for( int i = 1; i <= argc; i++ )
 		{
@@ -261,10 +264,12 @@ void Signal::Sig_info()
 		cout << "DATA[" << i << "] -> " << data[i] << " --> " << updateddata[i] << endl;
 		i++;
 	}
+
 	cout << "\nSignal length: " << length << endl;
 	cout << "Maximum val:" << Max_Num << endl;
 	cout << "Minimum val:" << Min_Num << endl;
 	cout << "Average val:" << Avg << endl;
+
 }
 
 void Signal::Save_file(int n)
@@ -279,12 +284,8 @@ void Signal::Save_file(int n)
 			}
 			fclose(fp_w);
 		}*/
-	string test = "Raw_data_0" + to_string(n) + ".txt";
-	ofstream myfile ("Raw_data_0" + to_string(n) + ".txt");
-	//myfile >> length >> Max_Num;
-	//myfile.ignore( 1,'\n' );
-	cout << "Length: " << length << " | Max: " << Max_Num << endl;
 
+	/*ofstream myfile ("Raw_data_0" + to_string(n) + ".txt");
 	if(myfile.is_open())
 	{
 		cerr << "Could not open file "<< endl;
@@ -300,15 +301,36 @@ void Signal::Save_file(int n)
 		myfile << updateddata[i++];
 	}
 
+	myfile.close();*/
+
+	ostringstream fileNumStream;
+	fileNumStream << setw(2) << setfill('0') << to_string(n);
+
+	ofstream myfile ( "Raw_data_" + fileNumStream.str() + ".txt" );
+
+	if( !myfile.is_open() )
+	{
+		cerr << "Could not open file "<< endl;
+		return;
+	}
+
+	myfile << length << " " << Max_Num << endl;
+
+	for( int i = 0; i < length; i++ )
+	{
+		myfile << updateddata[i] << endl;
+	}
+
 	myfile.close();
+
 }
 
 Signal::Signal(int n) /// It reads in my file.
 {
+	ostringstream fileNumStream;
+	fileNumStream << setw(2) << setfill('0') << to_string(n);
 
-	string test = "Raw_data_0" + to_string(n) + ".txt";
-	cout << test << endl;
-	ifstream myfile ("Raw_data_0" + to_string(n) + ".txt");
+	ifstream myfile ( "Raw_data_" + fileNumStream.str() + ".txt" );
 
 	int i = 0;
 	length = 0;
@@ -327,7 +349,7 @@ Signal::Signal(int n) /// It reads in my file.
 			getline( myfile, line );
 			data.push_back( atof( line.c_str() ) );
 			updateddata.push_back( data[i] );
-			cout << "Read the data for " << i << " : " << data[i] << endl;
+			//cout << "Read the data for " << i << " : " << data[i] << endl;
 			i++;
 		}
 		myfile.close();
@@ -346,13 +368,23 @@ Signal::Signal(string filename)
 {
 	ifstream myfile(filename);
 	int i = 0;
+	length = 0;
 	if (myfile.is_open())
 	{
-		while (!myfile.eof())
+		myfile >> length >> Max_Num; // the first value is length and the next one is Max
+		myfile.ignore( 1,'\n' );
+		cout << "Length: " << length << " | Max: " << Max_Num << endl;//printing them out
+		string line;
+		while ( i <= length)
 		{
-			myfile >> data[i++];
+			//myfile >> test[i];
+			getline( myfile, line );
+			data.push_back( atof( line.c_str() ) ); // we need to use pushback for Vector
+			updateddata.push_back( data[i] );
+			cout << "Read the data for " << i << " : " << data[i] << endl;
+			i++;
 		}
-		myfile.close();
+
 	}
 	else
 	{

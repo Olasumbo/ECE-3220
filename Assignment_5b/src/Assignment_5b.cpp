@@ -16,8 +16,8 @@
 
 using namespace std;
 
-// --------- BaseSig class and methods ------------------------------
-class BaseSig
+// --------- ExtendSig class and methods ------------------------------
+class ExtendSig
 {
 	private:
 		// neither derived classes nor other users
@@ -30,9 +30,9 @@ class BaseSig
 		void populate (int x);
 
 	public:
-		BaseSig();		// default constructor.
-		BaseSig(int L);	// parametric constructor
-		virtual ~BaseSig();		// virtual destructor
+		ExtendSig();		// default constructor.
+		ExtendSig(int L);	// parametric constructor
+		virtual ~ExtendSig();		// virtual destructor
 		int getLength() { return length; };
 		int getRawValue(int pos);
 		static int numObjects;	// static, only one member for the entire hierarchy
@@ -40,10 +40,10 @@ class BaseSig
 
 };
 
-int BaseSig::numObjects = 0;	// initialize static data member
+int ExtendSig::numObjects = 0;	// initialize static data member
 
 // Base class constructor
-BaseSig::BaseSig()
+ExtendSig::ExtendSig()
 {
 	length = 0;
 	Max_Num = 0;
@@ -52,7 +52,8 @@ BaseSig::BaseSig()
 }
 
 // Base class parametric constructor
-BaseSig::BaseSig(int L)
+// Note that the data array is not being initialized (we could read from a file)
+ExtendSig::ExtendSig(int L)
 {
 	Max_Num = 0;
 	length = 0;
@@ -61,12 +62,12 @@ BaseSig::BaseSig(int L)
 }
 
 // Base class destructor
-BaseSig::~BaseSig()
+ExtendSig::~ExtendSig()
 {
-	cout << "Goodbye, BaseSig." << endl;
+	cout << "Goodbye, ExtendSig." << endl;
 }
 
-int BaseSig::getRawValue(int pos)
+int ExtendSig::getRawValue(int pos)
 {
 	if(pos < 0)			// invalid index
 		return(raw_data[0]);
@@ -76,7 +77,7 @@ int BaseSig::getRawValue(int pos)
 		return(raw_data[pos]);
 }
 
-void BaseSig::populate (int x)
+void ExtendSig::populate (int x)
 {
 		ostringstream fileNumStream;
 		fileNumStream << setw(2) << setfill('0') << to_string(x);
@@ -107,26 +108,24 @@ void BaseSig::populate (int x)
 		}
 	}
 
-void BaseSig::printInfo()
+void ExtendSig::printInfo()
 {
 	cout << "\nLength: " << length << endl;
 }
 // ------------------------------------------------------------------
 
-
-
-// --------- ProcessedSignal class and methods ----------------------------
-class ProcessedSignal  : public BaseSig{ // ProcessedSignal  is derived from class BaseSig
-//BaseSig is a public base class
+// --------- ProcessedSignal_V2 class and methods ----------------------------
+class ProcessedSignal_V2  : public ExtendSig{ // ProcessedSignal_V2  is derived from class ExtendSig
+//ExtendSig is a public base class
 	private:
-		double average;
-		vector<double> data;
+		double average;		// add new data members
+		vector<double> data;		// we could have used a vector
 		double Max_Num;
 		double Min_Num;
 
 	public:
-		ProcessedSignal (int L);	//derived classes need a new constructor
-		~ProcessedSignal ();
+		ProcessedSignal_V2 (int L);	//derived classes need a new constructor
+		~ProcessedSignal_V2 ();
 
 		// define new member functions
 		double getValue(int pos);
@@ -141,7 +140,7 @@ class ProcessedSignal  : public BaseSig{ // ProcessedSignal  is derived from cla
 		void printInfo();	// new standard: explicit "override" keyword can be used
 };
 
-ProcessedSignal::ProcessedSignal(int L): BaseSig(L)
+ProcessedSignal_V2::ProcessedSignal_V2(int L): ExtendSig(L)
 {
 	ostringstream fileNumStream;
 	fileNumStream << setw(2) << setfill('0') << to_string(L);
@@ -175,13 +174,13 @@ ProcessedSignal::ProcessedSignal(int L): BaseSig(L)
 	}
 }
 
-ProcessedSignal::~ProcessedSignal()
+ProcessedSignal_V2::~ProcessedSignal_V2()
 {
 	//delete data;
 	cout << "Goodbye, ProcessedSig." << endl;
 }
 
-double ProcessedSignal::getValue(int pos)
+double ProcessedSignal_V2::getValue(int pos)
 {
 	if(pos < 0)			// invalid index
 		return(data[0]);
@@ -191,7 +190,7 @@ double ProcessedSignal::getValue(int pos)
 		return(data[pos]);
 }
 
-int ProcessedSignal::setValue(int pos, double val) {
+int ProcessedSignal_V2::setValue(int pos, double val) {
 	if((pos < 0) || (pos >= length))
 		return(-1);	// invalid index
 	else {
@@ -200,7 +199,7 @@ int ProcessedSignal::setValue(int pos, double val) {
 		return(0);	// success
 	}
 }
-void ProcessedSignal::getMax()
+void ProcessedSignal_V2::getMax()
 {
 	Max_Num = 0;
 	for(int i = 0; i<length; i++)
@@ -212,19 +211,19 @@ void ProcessedSignal::getMax()
 	}
 }
 
-void ProcessedSignal::getMin()
+void ProcessedSignal_V2::getMin()
 {
 	Min_Num = Max_Num;
 	for(int i = 0; i<length; i++)
 	{
-		if( data[i] < Min_Num )
+		if( data[i] < Min_Num )//*(data+i) is an actual value in the vector/ or array
 		{
 			Min_Num = data[i];
 		}
 	}
 }
 
-void ProcessedSignal::normalize()
+void ProcessedSignal_V2::normalize()
 {
 	getMax();
 	for(int i = 0; i < length; i++)
@@ -235,7 +234,7 @@ void ProcessedSignal::normalize()
 	getMax();
 }
 
-void ProcessedSignal::printInfo()
+void ProcessedSignal_V2::printInfo()
 {
 	cout << "\nLength: " << length << endl
 		 << "Average: " << average << endl
@@ -243,7 +242,7 @@ void ProcessedSignal::printInfo()
 		 << "Minimum Number: " << Min_Num << endl;
 }
 
-double ProcessedSignal::getAverage()
+double ProcessedSignal_V2::getAverage()
 {
 	average = 0;
 	for(int i = 0; i<length; i++)
@@ -254,14 +253,13 @@ double ProcessedSignal::getAverage()
 
 	return 0;
 }
-
 // To be able to print undated values in the vector
-double ProcessedSignal::Print_Normalized()
+double ProcessedSignal_V2::Print_Normalized()
 {
 	int i = 0;
 	while(i < length)
 	{
-		cout << "Data " << i << " : " << data[i] << raw_data[i] << endl;
+		cout << "Data " << i << " : " << data[i] << endl;
 		i++;
 	}
 	return 0;
@@ -278,26 +276,27 @@ int main()
 		cerr<<"Error!, Please enter a FILE NUM between 1 and 4" <<endl;
 		cin >> num;
 	}
-	ProcessedSignal Psig1(num);
+	ProcessedSignal_V2 Psig2(num);
 	cout <<"Testing my functions " << endl;
-	cout << "# of objects created: " << Psig1.numObjects << endl;
-	cout << "Raw Value: " << Psig1.getRawValue(7) << endl;
-	cout << "Set Value: "<< Psig1.setValue(7, 2.5) << endl;
-	cout << "Get Value: " << Psig1.getValue(7) << endl;
-	cout << "--------------------------------------------" << endl;
+	cout << "# of objects created: " << Psig2.numObjects << endl;
+	cout << "Raw Value: " << Psig2.getRawValue(8) << endl;
+	cout << "Set Value: "<< Psig2.setValue(7, 3.5) << endl;
+	cout << "Get Value: " << Psig2.getValue(4) << endl;
 
-	Psig1.getAverage();
-	Psig1.getMax();
-	Psig1.getMin();
-	Psig1.printInfo();
+	Psig2.getAverage();
+	Psig2.getMax();
+	Psig2.getMin();
+	Psig2.printInfo();
 	cout << "--------------------------------------------" << endl;
 	cout << endl;
 
-	cout <<"After Normalization";
-	Psig1.normalize();
-	Psig1.Print_Normalized();
-	Psig1.printInfo();
+	Psig2.normalize();
+	cout <<"After Normalization\n";
+	Psig2.Print_Normalized();
+	Psig2.printInfo();
 	cout << "--------------------------------------------" << endl;
+	cout << "--------------------------------------------" << endl;
+
 
 	return 0;
 }

@@ -97,11 +97,10 @@ int main(int argc, char*argv[])
 void Signal::menu()
 {
 	int opt;
+	cout << "Welcome to a complicated life"<< endl;
+	cout << "Here is a list of things you can do, Please pick your choices appropriately"<< endl;
 	do
 	{
-
-		cout << "Welcome to a complicated life"<< endl;
-		cout << "Here is a list of things you can do, Please pick your choices appropriately"<< endl;
 		cout << "\n1) Offset " << endl;
 		cout << "2) Scale" << endl;
 		cout << "3) Center" << endl;
@@ -285,26 +284,8 @@ void Signal::Save_file(int n)
 			fclose(fp_w);
 		}*/
 
-	/*ofstream myfile ("Raw_data_0" + to_string(n) + ".txt");
-	if(myfile.is_open())
-	{
-		cerr << "Could not open file "<< endl;
-	}
-	int i = 0;
-	string line;
-	while ( i < length )
-	{
-		//getline( myfile, line );
-		updateddata.push_back( atof( line.c_str() ) );
-		cout << "Read the data for " << i << " : " << data[i] << endl;
-		i++;
-		myfile << updateddata[i++];
-	}
-
-	myfile.close();*/
-
 	ostringstream fileNumStream;
-	fileNumStream << setw(2) << setfill('0') << to_string(n);
+	fileNumStream << setw(2) << setfill('0') << to_string(n); /// this is so that we could open files such as 10/11
 
 	ofstream myfile ( "Raw_data_" + fileNumStream.str() + ".txt" );
 

@@ -1,0 +1,7 @@
+22:12:27 **** Rebuild of configuration Debug for project Lab5 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Lab5.o" "..\\src\\Lab5.cpp" 
+g++ -o Lab5.exe "src\\Lab5.o" 
+
+22:12:34 Build Finished (took 7s.639ms)
+

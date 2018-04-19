@@ -5,22 +5,31 @@
  *      Author: obaba
  */
 #include <vector>
+#include <iostream>
+
+#include "Card.h"
+using namespace std;
+
 #ifndef DEALER_H_
 #define DEALER_H_
 
 class Dealer
 {
 	private:
-	//vector<int> hand;
-	void Deal();
+		//vector<int> hand;
+		void Deal();
+		Deck mainDeck;
 
 	public:
-	void Hit();
-	int CheckHand();
-	void Shuffle();
+		Dealer() { };
+		~Dealer() { };
+		int dealer_hand;
+		int dealer_cardtotal;
+		void Hit();
+		int CheckHand();
+		void Shuffle();
 
 };
-
 
 
 #endif /* DEALER_H_ */

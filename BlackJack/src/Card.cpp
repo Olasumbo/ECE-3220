@@ -30,6 +30,56 @@ Card::Suite Card::getSuite()
 	return theSuite;
 }
 
+
+void Card::printCard()
+{
+	switch( theRank )
+	{
+		case ACE:
+			cout << "ACE";
+			break;
+		case TWO:
+			cout <<  "TWO";
+			break;
+		case THREE:
+			cout <<  "THREE";
+			break;
+		case FOUR:
+			cout <<  "FOUR";
+			break;
+		case FIVE:
+			cout <<  "FIVE";
+			break;
+		case SIX:
+			cout <<  "SIX";
+			break;
+		case SEVEN:
+			cout <<  "SEVEN";
+			break;
+		case EIGHT:
+			cout <<  "EIGHT";
+			break;
+		case NINE:
+			cout <<  "NINE";
+			break;
+		case TEN:
+			cout <<  "SOFT ACE";
+			break;
+		case JACK:
+			cout <<  "JACK";
+			break;
+		case QUEEN:
+			cout <<  "QUEEN";
+			break;
+		case KING:
+			cout <<  "KING";
+			break;
+		default:
+			cout <<  "FAILURE!!!";
+			break;
+	}
+}
+
 void Card::setRank( Card::Rank newRank )
 {
 	theRank = newRank;

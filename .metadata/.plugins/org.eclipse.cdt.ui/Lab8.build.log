@@ -1,0 +1,34 @@
+02:06:00 **** Incremental Build of configuration Debug for project Lab8 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Lab8Exception.o" "..\\src\\Lab8Exception.cpp" 
+..\src\Lab8Exception.cpp:38:18: warning: dynamic exception specifications are deprecated in C++11 [-Wdeprecated]
+  void normalize()throw(string);
+                  ^~~~~
+..\src\Lab8Exception.cpp: In member function 'void Signal::menu()':
+..\src\Lab8Exception.cpp:152:13: warning: variable 'obj3' set but not used [-Wunused-but-set-variable]
+     Signal *obj3;
+             ^~~~
+..\src\Lab8Exception.cpp: At global scope:
+..\src\Lab8Exception.cpp:239:26: warning: dynamic exception specifications are deprecated in C++11 [-Wdeprecated]
+ void Signal::normalize() throw(string)
+                          ^~~~~
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Lab 8.o" "..\\src\\Lab 8.cpp" 
+..\src\Lab 8.cpp: In member function 'double* Ellipse::calcVertices()':
+..\src\Lab 8.cpp:90:2: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
+  for( i = 0; i < 8; i += 2 );
+  ^~~
+..\src\Lab 8.cpp:91:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
+  {
+  ^
+..\src\Lab 8.cpp: In function 'int main()':
+..\src\Lab 8.cpp:220:7: warning: unused variable 'radius' [-Wunused-variable]
+   int radius;
+       ^~~~~~
+g++ -o Lab8.exe "src\\Lab 8.o" "src\\Lab8Exception.o" 
+src\Lab8Exception.o: In function `main':
+C:\Users\obaba\ECE 3220\Lab8\Debug/../src/Lab8Exception.cpp:464: multiple definition of `main'
+src\Lab 8.o:C:\Users\obaba\ECE 3220\Lab8\Debug/../src/Lab 8.cpp:143: first defined here
+collect2.exe: error: ld returned 1 exit status
+
+02:06:06 Build Finished (took 6s.321ms)
+

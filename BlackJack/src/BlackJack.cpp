@@ -21,6 +21,8 @@ using namespace std;
 int main()
 {
 	int num_player;
+	vector <int> Players;
+
 	cout << "" << endl; // prints 
 	cout << "Welcome to Casino 3220, Lets Play some BlackJack" << endl; // prints
 	//cout << "***********************GAME ON*******************************" << endl;
@@ -34,9 +36,37 @@ int main()
 		cin >> num_player;
 	}
 
+	/*for( int i = 0; i < num_players; i++ )
+	{
+		Players.push_back( new Player() );
+	}
+	Players.push_back( new System() );
+
     cout << "1. View rules" << endl;
 	cout << "2. Play Blackjack" << endl;
 	cout << "3. Go to main menu" << endl;
+
+	while( gameNotOver )
+	{
+
+		foreach( Players )
+		{
+			Player[i].makeChoice();
+		}
+
+		if( someone Won? )
+		{
+			FIESTA!!!!!
+		}*/
+
+	}
+
+	/*
+	 *
+	 *
+	 *
+	 */
+
 	return 0;
 
 

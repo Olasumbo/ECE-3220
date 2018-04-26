@@ -276,3 +276,35 @@ java.io.IOException: The process cannot access the file because another process 
 
 !ENTRY org.eclipse.cdt.core 1 0 2018-04-04 22:21:13.715
 !MESSAGE Indexed 'BlackJack' (1 sources, 124 headers) in 4.4 sec: 13,301 declarations; 20,924 references; 0 unresolved inclusions; 0 syntax errors; 1 unresolved names (0.0029%)
+
+!ENTRY org.eclipse.cdt.codan.core.cxx 4 1 2018-04-21 16:00:33.183
+!MESSAGE Unsupported statement type: CPPASTDefaultStatement.
+!SESSION 2018-04-22 20:15:43.274 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-22 20:27:08.188
+!MESSAGE Indexed 'HWk6' (1 sources, 124 headers) in 4.85 sec: 13,301 declarations; 20,924 references; 0 unresolved inclusions; 0 syntax errors; 1 unresolved names (0.0029%)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2018-04-22 20:50:34.826
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2018-04-22 20:50:34.828
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+!SESSION 2018-04-26 16:16:43.664 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-26 16:18:32.413
+!MESSAGE Indexed 'Lab 9' (0 sources, 0 headers) in 0.005 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-26 16:23:28.167
+!MESSAGE Indexed 'Lab 9' (1 sources, 0 headers) in 0.007 sec: 1 declarations; 0 references; 1 unresolved inclusions; 0 syntax errors; 3 unresolved names (75%)

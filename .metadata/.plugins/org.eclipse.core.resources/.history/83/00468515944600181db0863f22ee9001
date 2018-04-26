@@ -1,0 +1,26 @@
+/*
+ * System.cpp
+ *
+ *  Created on: Apr 13, 2018
+ *      Author: obaba
+ */
+#include "System.h"
+
+System::System()
+{
+		num_of_players = 0;
+		players = 0;
+}
+
+System::~System()
+{
+
+}
+void System:: start()
+{
+	cout << "******Game Start!******"<<endl;
+	//choice();
+
+}
+
+

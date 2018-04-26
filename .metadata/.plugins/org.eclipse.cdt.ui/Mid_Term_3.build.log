@@ -1,1 +1,11 @@
-Info: Nothing to build for Mid_Term_3
+01:08:52 **** Rebuild of configuration Debug for project Mid_Term_3 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Mid_Term_3.o" "..\\src\\Mid_Term_3.cpp" 
+..\src\Mid_Term_3.cpp: In function 'int main()':
+..\src\Mid_Term_3.cpp:17:14: warning: variable 'z' set but not used [-Wunused-but-set-variable]
+  int a = 10, z = 10;
+              ^
+g++ -o Mid_Term_3.exe "src\\Mid_Term_3.o" 
+
+01:08:56 Build Finished (took 3s.940ms)
+

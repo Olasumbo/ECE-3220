@@ -25,10 +25,9 @@ class Dealer
 		~Dealer() { };
 		int dealer_hand;
 		int dealer_cardtotal;
-		void Hit();
 		int CheckHand();
+		int CheckWin();
 		void Shuffle();
-
 };
 
 

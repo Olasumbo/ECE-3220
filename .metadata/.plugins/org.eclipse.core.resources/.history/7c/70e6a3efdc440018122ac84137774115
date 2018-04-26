@@ -1,0 +1,6 @@
+#include "Deck.h"
+
+vector<Card> Deck::getDeck()
+{
+	return Deckholder;
+}

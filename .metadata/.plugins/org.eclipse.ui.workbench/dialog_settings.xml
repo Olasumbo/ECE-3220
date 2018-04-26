@@ -9,19 +9,15 @@
 		<item value="350" key="dialogWidth"/>
 		<list key="textEntries">
 			<item value="1"/>
-			<item value="1"/>
 		</list>
 		<list key="orderedElements">
 			<item value="org.eclipse.egit.ui.GitRepositoryExploring"/>
-			<item value="org.eclipse.egit.ui.commit.OpenCommitAction"/>
 		</list>
 		<list key="orderedProviders">
 			<item value="org.eclipse.ui.perspectives"/>
-			<item value="org.eclipse.ui.actions"/>
 		</list>
 		<list key="textArray">
 			<item value="git"/>
-			<item value="git "/>
 		</list>
 	</section>
 	<section name="NewWizardAction">
@@ -29,5 +25,7 @@
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.cdt.ui.newCWizards"/>
 		</list>
+	</section>
+	<section name="ImportExportAction">
 	</section>
 </section>

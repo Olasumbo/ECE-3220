@@ -1,0 +1,133 @@
+//============================================================================
+// Name        : HWk6.cpp
+// Author      : Ola and Seth
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+#include <cmath>
+#include <string>
+#include "HWK6.h"
+
+class demo{
+private:
+	string word;
+public:
+    demo(const char * str){
+		word = str;
+        cout << "demo " << word << " created\n";
+    }
+    ~demo(){
+        cout << "demo " << word << " destroyed\n";
+    }
+    void show()
+    {
+        cout << "demo " << word << " lives!\n";
+    }
+};
+
+// Tell the compiler what sort of exception(s) the functions may throw.
+// It is not needed, but if you specify the exceptions, your functions
+// needs to be consistent with those specifications.
+double hmean(double a, double b);
+double gmean(double a, double b) throw(bad_gmean);
+double means(double a, double b) throw(bad_hmean, bad_gmean);
+
+int main(){
+
+	double x, y, z;
+
+    demo d1("Found in main()");
+	cout << "Enter two numbers: ";
+
+	while(cin >> x >> y)
+	{
+		try
+		{
+			z = means(x,y);
+			cout << "The mean of means of " << x << " and " << y << " is " << z << endl;
+			cout << "Enter next set of numbers <q to quit>: ";
+		}
+       /*catch(bad_hmean &bh)
+		{
+			bh.mesg();
+			cout << "Try again.\n";
+			continue;
+		}
+        catch(bad_hmean &bh)
+        {
+        	cout << "Get your life together.\n";
+        	continue;
+        }
+		catch(bad_gmean &bg)
+		{
+			cout << bg.mesg();
+			cout << "Values used: " << bg.v1 << ", "<< bg.v2 << endl;
+			cout << "Sorry, you cannot run this any more. \n";
+			break;
+		}*/
+        catch(...)//catch all
+        {
+            cout << "general exception";
+        }
+	}
+    //d1.show();
+	cout << "Bye!\n";
+	return 0;
+}
+
+// Exception specification: this function may throw a bad_hmean object
+double hmean(double a, double b)
+{
+	if (a == -b)
+	{
+		throw bad_hmean(a,b);
+	}
+	if( a == 0.1)
+	{
+		throw bad_hmean(a,b);
+	}
+	return 2.0*a*b / (a+b);
+}
+
+// Exception specification: this function may throw a bad_gmean object
+double gmean(double a, double b) throw(bad_gmean)
+{
+	if(a < 0 || b < 0)
+	{
+		throw bad_gmean(a,b);
+	}
+	/*if(a == 5 || b == 4)
+	{
+		throw 0;
+	}*/
+	return sqrt(a*b);
+}
+
+// Exception specification: this function (or functions called from this one)
+// may throw a bad_hmean or a bad_gmean obj.
+double means(double a, double b) throw(bad_hmean, bad_gmean){
+    double am, hm, gm;
+    demo d2("Found in means()");
+    am = (a + b)/ 2.0; // arithmetic mean
+    try
+    {
+        hm = hmean(a,b);
+        gm = gmean(a,b);
+    }
+    /*catch(bad_hmean &bh)
+    {
+        bh.mesg();
+        cout << "Caught in means()\n";
+        //throw;	// "rethrow". Try commenting this out.
+    }*/
+   catch(bad_hmean &bh)
+   {
+	   bh.mesg();
+	   cout << "Errors has occured\n";
+   }
+   d2.show();
+    return (am + hm + gm)/3.0;
+}

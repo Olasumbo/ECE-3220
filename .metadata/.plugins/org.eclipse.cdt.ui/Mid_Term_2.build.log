@@ -1,1 +1,7 @@
-Info: Nothing to build for Mid_Term_2
+01:08:48 **** Rebuild of configuration Debug for project Mid_Term_2 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Mid_Term_2.o" "..\\src\\Mid_Term_2.cpp" 
+g++ -o Mid_Term_2.exe "src\\Mid_Term_2.o" 
+
+01:08:51 Build Finished (took 3s.649ms)
+

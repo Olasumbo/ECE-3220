@@ -1,0 +1,16 @@
+#
+#Wed Apr 18 11:07:07 CDT 2018
+Debug/src/System.o=1
+src/Player.cpp=1
+src/Player.h=1
+src/Deck.h=1
+src/BlackJack.cpp=1
+src/Card.cpp=1
+Debug/src/BlackJack.o=1
+Debug/src/Card.o=1
+Debug/BlackJack.exe=1
+src/System.h=1
+src/System.cpp=1
+Debug/src/Player.o=1
+src/Dealer.h=1
+src/Card.h=1

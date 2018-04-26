@@ -1,0 +1,21 @@
+22:08:55 **** Incremental Build of configuration Debug for project HWk6 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\HWk6.o" "..\\src\\HWk6.cpp" 
+..\src\HWk6.cpp:34:32: error: expected ')' before ';' token
+ double hmean(double a, double b;
+                                ^
+..\src\HWk6.cpp:35:34: warning: dynamic exception specifications are deprecated in C++11 [-Wdeprecated]
+ double gmean(double a, double b) throw(bad_gmean);
+                                  ^~~~~
+..\src\HWk6.cpp:36:34: warning: dynamic exception specifications are deprecated in C++11 [-Wdeprecated]
+ double means(double a, double b) throw(bad_hmean, bad_gmean);
+                                  ^~~~~
+..\src\HWk6.cpp:96:34: warning: dynamic exception specifications are deprecated in C++11 [-Wdeprecated]
+ double gmean(double a, double b) throw(bad_gmean)
+                                  ^~~~~
+..\src\HWk6.cpp:111:34: warning: dynamic exception specifications are deprecated in C++11 [-Wdeprecated]
+ double means(double a, double b) throw(bad_hmean, bad_gmean){
+                                  ^~~~~
+
+22:08:57 Build Finished (took 1s.425ms)
+

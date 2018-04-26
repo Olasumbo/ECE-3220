@@ -6,6 +6,8 @@
  */
 
 #include "Card.h"
+#include <vector>
+
 #ifndef DECK_H_
 #define DECK_H_
 
@@ -13,12 +15,15 @@
 class Deck
 {
 	private:
-		vector <Card> Deckholder;
+		vector<Card> Deckholder;
 		int num_cards;
 
 	public:
-		Deck() { };
+		Deck() { num_cards = 52; };
 		~Deck() { };
+		vector<Card> getDeck();
+		void createDeck();
+		void displayDeck();
 };
 
 

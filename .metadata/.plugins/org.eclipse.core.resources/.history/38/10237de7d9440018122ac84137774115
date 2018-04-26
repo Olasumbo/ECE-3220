@@ -1,0 +1,111 @@
+/*
+ * Card.cpp
+ *
+ *  Created on: Apr 9, 2018
+ *      Author: obaba
+ */
+#include "Card.h"
+
+using namespace std;
+
+Card::Card()
+{
+	
+	//My name is Olasumbo!!! :D
+
+}
+
+char Card::getSuiteChar()
+{
+
+	char john = 'c';
+	return john;
+}
+
+Card::Rank Card::getRank()
+{
+	return theRank;
+}
+
+Card::Suite Card::getSuite()
+{
+	return theSuite;
+}
+
+std::ostream& operator<<(std::ostream& os, const Card& obj)
+{
+	//Do some fancy shmancy stuff
+	switch( theRank )
+	{
+		case ACE:
+			return "ACE";
+		case TWO:
+			return "TWO";
+		case THREE:
+			return "THREE";
+		case FOUR:
+			return "FOUR";
+		case FIVE:
+			return "FIVE";
+		case SIX:
+			return "SIX";
+		case SEVEN:
+			return "SEVEN";
+		case EIGHT:
+			return "EIGHT";
+		case NINE:
+			return "NINE";
+		case TEN:
+			return "TEN";
+		case JACK:
+			return "JACK";
+		case QUEEN:
+			return "QUEEN";
+		case KING:
+			return "KING";
+		default:
+			return "FAILURE!!!";
+	}
+
+}
+
+void Card::setRank( Card::Rank newRank )
+{
+	theRank = newRank;
+}
+
+int Card::getValue()
+{
+	switch( theRank )
+	{
+		case ACE:
+			return 1;
+		case TWO:
+			return 2;
+		case THREE:
+			return 3;
+		case FOUR:
+			return 4;
+		case FIVE:
+			return 5;
+		case SIX:
+			return 6;
+		case SEVEN:
+			return 7;
+		case EIGHT:
+			return 8;
+		case NINE:
+			return 9;
+		case TEN:
+			return 10;
+		case JACK:
+			return 11;
+		case QUEEN:
+			return 12;
+		case KING:
+			return 13;
+		default:
+			return 0;
+	}
+}
+

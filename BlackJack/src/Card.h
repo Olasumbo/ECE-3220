@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ostream>
 using namespace std;
 
 #ifndef CARD_CONST
@@ -39,7 +40,7 @@ class Card
 		char getSuiteChar();
 		int getValue();
 		void setRank( Card::Rank newRank );
-		string toString();
+		void printCard();
 
 	private:
 		Suite theSuite;

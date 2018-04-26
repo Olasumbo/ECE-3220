@@ -22,21 +22,21 @@ using namespace std;
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-class Player: public Dealer
+class Player
 {
-	private:
+	protected:
 		vector<Card> hand;
 		int players_total;//Number of players
 		double bet, bank;
 		string Playersname; //player name
 		int cansplit();
-		void Deal(); // I need a place where all the cards are stored then iterate through it and deal a random 2 card.
 
 
 	public:
 		int card_total; //player totals card
+		void Deal( Deck theDeck ); // I need a place where all the cards are stored then iterate through it and deal a random 2 card.
 		Player();
-		void Hit();
+		void Hit( Deck theDeck );
 		int player_hands();
 		int CheckWin();
 		void Stay();
@@ -44,6 +44,7 @@ class Player: public Dealer
 		void Split();
 		void initBet();
 		char choice();
+		void Rule();
 
 };
 
